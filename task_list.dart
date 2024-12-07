@@ -1,19 +1,20 @@
 import 'dart:io';
 import 'dart:async';
 void main() async{
-  const List<String> choiceTask = ['1', '2', '3', '4', '5'];
+  const List<String> choiceTask = ['1', '2', '3', '4', '5', '6'];
   // La liste pour stocker le tache est du type dynamic , cad il prend les donnees de toutes les types
-  List<dynamic> taskList = ["python"];
+  List<dynamic> taskList = [];
 
   // Le menu avec toutes les options possibles 
   String choiceMenu ='''
-**************** MENU *****************
-*      1. Ajouter une tache           *
-*      2. Afficher toutes les taches  *
-*      3. Supprimer une tache         *
-*      4. Modifier une tache          *
-*      5. Quittez                     *
-***************************************                               
+**************** MENU ******************
+*      1. Ajouter une tache            *
+*      2. Afficher toutes les taches   *
+*      3. Supprimer une tache          *
+*      4. Modifier une tache           *
+*      5. Restaurer la liste de taches *
+*      6. Quittez                      *
+****************************************                               
   Votre choix : '''; 
            
  
@@ -62,6 +63,7 @@ void main() async{
     }
   
   }
+
    // CHOIX 3: Pour supprimer une tache
   else if(userChoice == "3"){
     stdout.write("Entrer le nom de la tache que vous voulez supprimmer: ");
@@ -128,10 +130,24 @@ void main() async{
       }
     }
    }
-
-  // CHOIX 5: Pour Arreter le programme une tache
   }
-  else if (userChoice == "5"){
+
+ // CHOIX 5: Pour supprimer la liste des toutes les taches
+  else if(userChoice == "5") {
+    if(taskList.length == 0){
+      print("La liste de tache est deja vide !");
+    }
+    else{
+      taskList.clear();
+      print("La restauation est en cours...");
+      await Future.delayed(Duration(seconds: 2));
+      print("Succes : Liste des taches restaures !");
+
+    }
+  }
+
+  // CHOIX 6: Pour Arreter le programme une tache
+  else if (userChoice == "6"){
     print("Arret en cours...");
     // On attend pendant 2 secondes avant d'afficher le message d'arret et puis arreter le script
     // Grace a la bibliotheque async
